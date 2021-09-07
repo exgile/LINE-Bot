@@ -1,6 +1,5 @@
 import os
-import requests
-from datetime import datetime,date,timezone,timedelta
+from datetime import datetime
 
 from flask import Flask, abort, request
 
@@ -34,12 +33,8 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    get_message = event.message.text
+    get_message = event.message.text + "AAA"
+
     # Send To Line
-    #response = requests.post('https://ncutcbpapi.ncut.edu.tw/api/login', json={"userId":"A0401","password":"04850"})
-    #response_Json = response.json()
-    #API = "https://ncutcbpapi.ncut.edu.tw/api/codes/A0401/"+ datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
-    #TOKEN = "bearer "+response_Json['token']
-    #r=requests.get(API, headers={"authorization":TOKEN})
-    reply = TextSendMessage(text=f"{TEST}")
+    reply = TextSendMessage(text=f"{get_message}")
     line_bot_api.reply_message(event.reply_token, reply)
