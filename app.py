@@ -1,5 +1,4 @@
 import os
-import requests
 from datetime import datetime
 
 from flask import Flask, abort, request
@@ -36,5 +35,5 @@ def callback():
 def handle_message(event):
     get_message = event.message.text
     # Send To Line
-    reply = "AAAAA"
+    reply = TextSendMessage(text='CODE')
     line_bot_api.reply_message(event.reply_token, reply)
